@@ -11,7 +11,9 @@ if (process.env.PORT != null) {
   port = 8080;
 }
 
-database.connect("mongodb://heroku_vt43xv1g:qu10ii7oe4gsujgv8081s1jdjl@ds237707.mlab.com:37707/heroku_vt43xv1g").then(() => {
+var dbUrl : string = process.env.MONGODB_URI || 'mongodb://localhost:27017/mydb';
+
+database.connect(dbUrl).then(() => {
 
   const server = new Server(database, port);
 
